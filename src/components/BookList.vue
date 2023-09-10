@@ -1,6 +1,6 @@
 <template>
   <table>
-    <tr v-for="book in filterBooks" :key="book.isbn">
+    <tr v-for="book in books" :key="book.isbn">
       <td>{{ book.title }}</td>
       <td>{{ book.isbn }}</td>
     </tr>
@@ -11,26 +11,13 @@ export default {
   name: 'BookList',
   data() {
     return {
-      books: [
-        {
-          title: 'Design Patterns',
-          isbn: '978-0-20163-361-0'
-        },
-        {
-          title: 'REST und HTTP',
-          isbn: '978-3-86490-120-1'
-        },
-        {
-          title: 'Eloquent JavaScript',
-          isbn: '978-1-59327-584-6'
-        }
-      ]
+      books: []
     }
   },
-  computed: {
-    filterBooks() {
-      return this.books.filter((bookData) => bookData.title.toLowerCase().includes('tt'))
-    }
+  created() {
+    fetch('http://localhost:4730/books')
+      .then((response) => response.json())
+      .then((jsonData) => (this.books = jsonData))
   }
 }
 </script>
