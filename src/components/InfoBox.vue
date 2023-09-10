@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <button @click="isVisible = !isVisible">
     <span v-if="isVisible">Hide</span>
     <span v-else>Show</span>
   </button>

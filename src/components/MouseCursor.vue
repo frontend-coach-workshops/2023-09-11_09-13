@@ -1,5 +1,5 @@
 <template>
-  <div id="box">
+  <div id="box" @mousemove="(x = $event.offsetX), (y = $event.offsetY)">
     <span>x:{{ x }}, y: {{ y }}</span>
   </div>
 </template>
