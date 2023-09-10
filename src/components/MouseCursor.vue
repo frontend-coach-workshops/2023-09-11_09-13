@@ -1,5 +1,5 @@
 <template>
-  <div id="box" @mousemove="(x = $event.offsetX), (y = $event.offsetY)">
+  <div id="box" @mousemove="updateCoordinates">
     <span>x:{{ x }}, y: {{ y }}</span>
   </div>
 </template>
@@ -11,6 +11,12 @@ export default {
     return {
       x: 12,
       y: 4
+    }
+  },
+  methods: {
+    updateCoordinates(event) {
+      this.x = event.offsetX
+      this.y = event.offsetY
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <table>
-    <tr v-for="book in books" :key="book.isbn">
+    <tr v-for="book in filterBooks" :key="book.isbn">
       <td>{{ book.title }}</td>
       <td>{{ book.isbn }}</td>
     </tr>
@@ -25,6 +25,11 @@ export default {
           isbn: '978-1-59327-584-6'
         }
       ]
+    }
+  },
+  computed: {
+    filterBooks() {
+      return this.books.filter((bookData) => bookData.title.toLowerCase().includes('tt'))
     }
   }
 }
