@@ -5,7 +5,7 @@
 
 <script>
 import AppNavigation from './components/AppNavigation.vue'
-import BookList from './components/BookList.vue'
+import BookList from './components/books/BookList.vue'
 
 export default {
   name: 'App',
