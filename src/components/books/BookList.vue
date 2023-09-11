@@ -1,6 +1,12 @@
 <template>
   <table>
-    <BookListItem v-for="book in books" :key="book.isbn" :title="book.title" :isbn="book.isbn" />
+    <BookListItem
+      v-for="book in books"
+      :key="book.isbn"
+      :title="book.title"
+      :isbn="book.isbn"
+      @delete="handleDelete"
+    />
   </table>
 </template>
 <script>
@@ -14,6 +20,15 @@ export default {
   data() {
     return {
       books: []
+    }
+  },
+  methods: {
+    handleDelete(isbn) {
+      fetch('http://localhost:4730/books/' + isbn, {
+        method: 'DELETE'
+      }).then(() => {
+        this.books = this.books.filter((book) => book.isbn !== isbn)
+      })
     }
   },
   created() {
