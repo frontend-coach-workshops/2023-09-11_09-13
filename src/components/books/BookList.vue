@@ -17,24 +17,16 @@ export default {
   components: {
     BookListItem
   },
-  data() {
-    return {
-      books: []
+  props: {
+    books: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {
     handleDelete(isbn) {
-      fetch('http://localhost:4730/books/' + isbn, {
-        method: 'DELETE'
-      }).then(() => {
-        this.books = this.books.filter((book) => book.isbn !== isbn)
-      })
+      this.$emit('delete', isbn)
     }
-  },
-  created() {
-    fetch('http://localhost:4730/books')
-      .then((response) => response.json())
-      .then((jsonData) => (this.books = jsonData))
   }
 }
 </script>
