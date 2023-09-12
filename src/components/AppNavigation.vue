@@ -1,7 +1,7 @@
 <template>
   <ul>
-    <li><a class="active" href="#books">Books</a></li>
-    <li><a href="#about">About</a></li>
+    <li><router-link activeClass="active" :to="{ name: 'home' }">Books</router-link></li>
+    <li><router-link activeClass="active" :to="{ name: 'about' }">About</router-link></li>
   </ul>
 </template>
 
