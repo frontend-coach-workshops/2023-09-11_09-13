@@ -6,7 +6,7 @@
     <img :src="book.cover" :alt="book.title" />
   </template>
   <p>
-    <router-link :to="{ name: 'home' }">Back</router-link>
+    <router-link :to="{ name: 'books' }">Back</router-link>
   </p>
 </template>
 

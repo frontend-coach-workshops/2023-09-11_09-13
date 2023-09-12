@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li><router-link activeClass="active" :to="{ name: 'home' }">Books</router-link></li>
+    <li><router-link activeClass="active" :to="{ name: 'books' }">Books</router-link></li>
     <li><router-link activeClass="active" :to="{ name: 'about' }">About</router-link></li>
   </ul>
 </template>
