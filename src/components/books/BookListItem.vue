@@ -1,6 +1,8 @@
 <template>
   <tr>
-    <td>{{ title }}</td>
+    <td>
+      <router-link :to="{ name: 'book-detail', params: { id: isbn } }">{{ title }}</router-link>
+    </td>
     <td>{{ isbn }}</td>
     <td>
       <button class="btn-delete" @click="handleClick">
