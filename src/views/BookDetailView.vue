@@ -11,16 +11,9 @@
 </template>
 
 <script>
+import FetchBookHandler from '@/mixins/FetchBookHandler'
+
 export default {
-  data() {
-    return {
-      book: null
-    }
-  },
-  created() {
-    fetch('http://localhost:4730/books/' + this.$route.params.id)
-      .then((response) => response.json())
-      .then((jsonData) => (this.book = jsonData))
-  }
+  mixins: [FetchBookHandler]
 }
 </script>

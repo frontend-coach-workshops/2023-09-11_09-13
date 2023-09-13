@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="updateBook" v-if="book">
+  <form @submit.prevent="updateBook" novalidate v-if="book">
     <p class="box-success" :class="{ active: showSuccessMsg }">
       Die Daten wurden erfolgreich gespeichert
     </p>
@@ -14,32 +14,23 @@
 </template>
 
 <script>
+import FetchBookHandler from '@/mixins/FetchBookHandler'
+
 export default {
+  mixins: [FetchBookHandler],
   data() {
     return {
-      book: null,
       showSuccessMsg: false
     }
   },
   methods: {
     updateBook() {
-      fetch('http://localhost:4730/books/' + this.$route.params.id, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.book)
-      }).then(() => this.updateComplete())
+      this.updateBookData().then(() => this.updateComplete())
     },
     updateComplete() {
       this.showSuccessMsg = true
       setTimeout(() => (this.showSuccessMsg = false), 5000)
     }
-  },
-  created() {
-    fetch('http://localhost:4730/books/' + this.$route.params.id)
-      .then((response) => response.json())
-      .then((jsonData) => (this.book = jsonData))
   }
 }
 </script>

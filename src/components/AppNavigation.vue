@@ -1,13 +1,23 @@
 <template>
   <ul>
+    <li>{{ mainStore.msg }}</li>
     <li><router-link activeClass="active" :to="{ name: 'books' }">Books</router-link></li>
     <li><router-link activeClass="active" :to="{ name: 'about' }">About</router-link></li>
   </ul>
 </template>
 
 <script>
+import { useMainStore } from '../stores/mainStore'
+
 export default {
-  name: 'AppNavigation'
+  name: 'AppNavigation',
+  setup() {
+    const mainStore = useMainStore()
+
+    return {
+      mainStore
+    }
+  }
 }
 </script>
 
