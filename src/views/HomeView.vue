@@ -4,15 +4,26 @@
 
 <script>
 import BookList from '@/components/books/BookList.vue'
+import { useBooksStore } from '../stores/booksStore'
 
 export default {
   name: 'HomeView',
   components: {
     BookList
   },
+  setup() {
+    const booksStore = useBooksStore()
+
+    return { booksStore }
+  },
   data() {
     return {
-      books: []
+      // books: []
+    }
+  },
+  computed: {
+    books() {
+      return this.booksStore.books
     }
   },
   methods: {
@@ -25,9 +36,9 @@ export default {
     }
   },
   created() {
-    fetch('http://localhost:4730/books')
+    /*fetch('http://localhost:4730/books')
       .then((response) => response.json())
-      .then((jsonData) => (this.books = jsonData))
+      .then((jsonData) => (this.books = jsonData))*/
   }
 }
 </script>

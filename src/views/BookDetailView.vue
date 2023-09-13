@@ -11,9 +11,20 @@
 </template>
 
 <script>
-import FetchBookHandler from '@/mixins/FetchBookHandler'
+//import FetchBookHandler from '@/mixins/FetchBookHandler'
+import { useBooksStore } from '../stores/booksStore'
 
 export default {
-  mixins: [FetchBookHandler]
+  // mixins: [FetchBookHandler],
+  setup() {
+    const booksStore = useBooksStore()
+
+    return { booksStore }
+  },
+  computed: {
+    book() {
+      return this.booksStore.books.find((bookData) => bookData.id === this.$route.params.id)
+    }
+  }
 }
 </script>
