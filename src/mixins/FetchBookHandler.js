@@ -1,4 +1,4 @@
-import { getBooks } from '../services/HttpService'
+import { getBook, updateBook } from '../services/HttpService'
 
 export default {
   data() {
@@ -8,16 +8,10 @@ export default {
   },
   methods: {
     updateBookData() {
-      return fetch('http://localhost:4730/books/' + this.$route.params.id, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.book)
-      })
+      return updateBook(this.$route.params.id, this.book)
     }
   },
   created() {
-    getBooks(this.$route.params.id).then((jsonData) => (this.book = jsonData))
+    getBook(this.$route.params.id).then((jsonData) => (this.book = jsonData))
   }
 }

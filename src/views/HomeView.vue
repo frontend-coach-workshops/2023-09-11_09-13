@@ -27,12 +27,8 @@ export default {
     }
   },
   methods: {
-    handleDelete(isbn) {
-      fetch('http://localhost:4730/books/' + isbn, {
-        method: 'DELETE'
-      }).then(() => {
-        this.books = this.books.filter((book) => book.isbn !== isbn)
-      })
+    async handleDelete(isbn) {
+      await this.booksStore.deleteBook(isbn)
     }
   },
   created() {

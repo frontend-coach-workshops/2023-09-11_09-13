@@ -1,21 +1,24 @@
 <template>
   <ul>
-    <li>{{ mainStore.msg }}</li>
-    <li><router-link activeClass="active" :to="{ name: 'books' }">Books</router-link></li>
+    <li>
+      <router-link activeClass="active" :to="{ name: 'books' }"
+        >Books ({{ bookStore.count }})</router-link
+      >
+    </li>
     <li><router-link activeClass="active" :to="{ name: 'about' }">About</router-link></li>
   </ul>
 </template>
 
 <script>
-import { useMainStore } from '../stores/mainStore'
+import { useBooksStore } from '../stores/booksStore'
 
 export default {
   name: 'AppNavigation',
   setup() {
-    const mainStore = useMainStore()
+    const bookStore = useBooksStore()
 
     return {
-      mainStore
+      bookStore
     }
   }
 }
